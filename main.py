@@ -113,10 +113,31 @@ def druid():
 def hunter():
     # 这经典规划问题，完全可以使用经典规划器解决
     # 玩家起手只有10金币，要通过和上面一排的卖家进行各种交易，让下面一排的买家都买到自己想要的东西，到最后，你又刚好只剩下10金币。
-    item_dict = {"coin":"金币","zlys":"治疗药水","hjjb":"黄金酒杯","sf":"手斧","fcdz":"翡翠吊坠", "ymbd":"亚麻绷带","lmzc":"联盟战锤",
-                 "bfcgl":"暴风城干酪","tsyj":"天使饮剂","kadwo":"可爱的玩偶","jensbs":"吉尔尼斯匕首","aybs":"暗影宝石","cwzhs":"宠物召唤哨",
-                 "hhyj":"活化药剂","":"","":"","":"","":"","":"","":"","":"","":"","":"",
-                 "":"","":"","":"","":"",}
+    item_dict = {"coin": "金币", "zlys": "治疗药水", "hjjb": "黄金酒杯", "sf": "手斧", "fcdz": "翡翠吊坠", "ymbd": "亚麻绷带",
+                 "lmzc": "联盟战锤", "bfcgl": "暴风城干酪", "tsyj": "天使饮剂", "kadwo": "可爱的玩偶", "jensbs": "吉尔尼斯匕首",
+                 "aybs": "暗影宝石", "cwzhs": "宠物召唤哨", "hhyj": "活化药剂", "tzbs": "铁质匕首", "hbswg": "红宝石王冠",
+                 "zhzq": "智慧之球", "yzyj": "夜之药剂", "zrhd": "侏儒护盾", "lbsmz": "蓝宝石魔杖", "asjz": "奥术卷轴",
+                 "jzdmz": "精致的帽子", "fnsj": "愤怒水晶", "yrlz": "永燃蜡烛", "djyj": "地精渔具", "mhhf": "猛虎护符",
+                 "dtdpx": "动听的排箫"}
+
+    # 卖家:需要的东西 -> 需要的数量,售卖的东西
+    sellers = [{"coin":(2,"zlys"),"sf":(5,"hjjb"),"ymbd":(2,"fcdz"),"bfcgl":(14,"lmzc"),
+                "kadwo":(3,"tsyj"),"aybs":(2,"jensbs"),"hhyj":(4,"cwzhs")},
+               {"coin":(1,"tzbs"),"bfcgl":(4,"fcdz"),"zlys":(4,"hjjb"),"sf":(22,"hbswg"),
+                "yzyj":(4,"zhzq"),"zrhd":(3,"aybs"),"cwzhs":(2,"lbsmz")},
+               {"coin":(2,"sf"),"ymbd":(5,"kadwo"),"jzdmz":(8,"asjz"),"fnsj":(1,"tsyj"),
+                "fcdj":(5,"yzyj"),"djyj":(4,"yrlz"),"dtdpx":(5,"mhhf")},
+               {"coin":(11,"dtdpx"),"hhyj":(1,"ymbd"),"zlys":(49,"jensbs"),"tzbs":(12,"zrhd"),
+                "bfcgl":(13,"yzyj"),"asjz":(3,"mhhf"),"hjjb":(3,"lmzc"),},
+               {"coin":(25,"asjz"),"sf":(2,"jzdmz"),"zlys":(7,"dtdpx"),"hhyj":(20,"fnsj"),
+                "lbsmz":(2,"jensbs"),"hjjb":(10,"zhzq"),"bfcgl":(15,"lbsmz"),},
+               {"coin":(3,"hhyj"),"sf":(4,"djyj"),"jzdmz":(5,"lbsmz"),"lmzc":(1,"yrlz"),
+                "kadwo":(5,"fnsj"),"dtdpx":(3,"hbswg"),"hjjb":(9,"tsyj"),},
+               {"coin":(2,"bfcgl"),"bfcgl":(5,"djyj"),"tzbs":(7,"cwzhs"),"hhyj":(9,"aybs"),
+                "hbswg":(1,"jensbs"),"zrhd":(4,"mhhf"),"kadwo":(3,"lmzc"),}]
+
+    # 买家:求购的东西 -> 求购的数量,找回的钱
+    buyers = [{"sf":(6,10),"djyj":(2,18),"fnsj":(1,60),}]
 
     class State:
         def __init__(self, coin, buyers):
